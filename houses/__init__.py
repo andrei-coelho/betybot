@@ -1,0 +1,1 @@
+from .slugdacasa.scrapy.scrapy import *
