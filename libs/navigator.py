@@ -4,7 +4,6 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 
 types = {
-    "text":  By.PARTIAL_LINK_TEXT,
     "xpath": By.XPATH,
     "tag":   By.TAG_NAME,
     "id":    By.ID,

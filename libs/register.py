@@ -1,18 +1,5 @@
 import re
 
-regex = re.compile("(\d+:\d+)\\n([^\\n]+)\n([^\\n]+)")
-result= regex.match("""07:30
-Stefanos Tsitsipas
-Lorenzo Sonego
-AO VIVO
-Partida suspensa devido ao Tempo
-Vencedor
-104
-1.06
-9.25""")
-                    
-#print(result.groups()[0])
-
 class Bet:
 
     def __init__(self, data, plr1, plr2, odd1, odd2) -> None:

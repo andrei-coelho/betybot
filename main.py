@@ -1,48 +1,38 @@
-import time
-from libs.register import Register,Bet
-from libs.navigator import Navigator 
+from libs.connector import Connector
+from modulos.scrapy import scrapy
+from entidades.Casa import Casa
 
+# casas = Connector().query('select * from casas where ativo = 1')
 
-register = Register(
-    "(\d+\/\d+)\\n(\d+:\d+)\\n([^\\n]+)\\n([^\\n]+)\\n([^\\n]+)\\n([^\\n]+)\\n([^\\n]+)\\n([^\\n]+)\\n([^\\n]+)",
-    player1Index=2,
-    player2Index=3,
-    betP1=7,
-    betP2=8,
-    dataIndexs=[0,1]
-)
+casas = [
+    {"id": 1, "nome":"test1", "site":"http://noone1.com.br/", "slug":"umacasa", "ativo":1},
+    {"id": 2, "nome":"test2", "site":"http://noone2.com.br/", "slug":"outracasa", "ativo":1},
+    {"id": 3, "nome":"test3", "site":"http://noone3.com.br/", "slug":"casaerro", "ativo":1}
+]
 
-def dataGen(dataStr:list):
-    return "-".join(dataStr)
+for c in casas:
+    esportes = [
+        {
+            "id":1,
+            "slug":"baseball",
+            "uri":"baseball"
+        },
+        {
+            "id":2,
+            "slug":"voley",
+            "uri":"voley"
+        }
+    ]
+    casa = Casa(
+            c['id'],
+            c['nome'],
+            c['slug'],
+            c['site']
+        )
+    
+    for esporte in esportes:
+        casa.add_esporte(esporte['id'], esporte['slug'], esporte['uri'])
 
-register.append("""17/05
-16:58
-Borna Coric
-Fabian Marozsan
-AO VIVO
-Vencedor
-67
-1.65
-2.27""", dataGen)
+    scrapy(casa)
 
-register.append("""16/05
-16:58
-Borna Coric
-Fabian Marozsan
-AO VIVO
-Vencedor
-67
-1.65
-2.27""", dataGen)
-
-register.append("""16/05
-16:58
-Borna Coric
-Fabian Marozsan
-AO VIVO
-Vencedor
-67
-1.65
-2.27""", dataGen)
-
-print(register.generate())
+# faz o bet aqui
