@@ -1,4 +1,7 @@
 
+from testes import scrapy
+
+
 """
 
 
@@ -25,10 +28,11 @@ allf = Connector().query("SELECT * FROM tests")
 
 print(allf)
 
-"""
+
 import importlib
 
 slug = "slugdacasa"
 
 my_module = importlib.import_module('houses.'+slug+'.scrapy')
 
+"""
